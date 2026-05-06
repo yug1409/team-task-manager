@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Lock, Mail, ArrowRight, CheckCircle2 } from "lucide-react";
-import API from "../api/axios";
 import toast from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
 
@@ -29,11 +28,9 @@ const Login = () => {
     try {
       setLoading(true);
 
-      const res = await API.post("/auth/login", formData);
+      await login(formData);
 
-      login(res.data.user, res.data.token);
-      toast.success("Login successful");
-      navigate("/dashboard");
+      navigate("/dashboard", { replace: true });
     } catch (error) {
       toast.error(error.response?.data?.message || "Login failed");
     } finally {
@@ -79,6 +76,7 @@ const Login = () => {
             <h1 className="text-4xl font-extrabold text-slate-900">
               Task<span className="text-indigo-600">Flow</span>
             </h1>
+
             <p className="text-slate-500 mt-2">
               Welcome back. Please login to continue.
             </p>
@@ -96,7 +94,11 @@ const Login = () => {
                 </label>
 
                 <div className="relative">
-                 
+                  <Mail
+                    size={19}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+                  />
+
                   <input
                     type="email"
                     name="email"
@@ -115,7 +117,11 @@ const Login = () => {
                 </label>
 
                 <div className="relative">
-                 
+                  <Lock
+                    size={19}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+                  />
+
                   <input
                     type="password"
                     name="password"
