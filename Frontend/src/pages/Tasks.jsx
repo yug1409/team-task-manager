@@ -32,7 +32,7 @@ const Tasks = () => {
       setTasks(res.data.tasks || []);
       setFilteredTasks(res.data.tasks || []);
     } catch (error) {
-      toast.error("Failed to fetch tasks");
+      toast.error(error.response?.data?.message || "Failed to fetch tasks");
     } finally {
       setLoading(false);
     }
@@ -50,11 +50,12 @@ const Tasks = () => {
     }
 
     if (search.trim() !== "") {
+      const keyword = search.toLowerCase();
+
       result = result.filter((task) => {
         const title = task?.title?.toLowerCase() || "";
         const project = task?.project?.name?.toLowerCase() || "";
         const assignedTo = task?.assignedTo?.name?.toLowerCase() || "";
-        const keyword = search.toLowerCase();
 
         return (
           title.includes(keyword) ||
@@ -72,11 +73,16 @@ const Tasks = () => {
   }
 
   const totalTasks = tasks.length;
-  const completedTasks = tasks.filter((task) => task.status === "completed").length;
+
+  const todoTasks = tasks.filter((task) => task.status === "todo").length;
+
   const inProgressTasks = tasks.filter(
     (task) => task.status === "in-progress"
   ).length;
-  const todoTasks = tasks.filter((task) => task.status === "todo").length;
+
+  const completedTasks = tasks.filter(
+    (task) => task.status === "completed"
+  ).length;
 
   const overdueTasks = tasks.filter(
     (task) =>
@@ -140,7 +146,9 @@ const Tasks = () => {
           <div className="h-12 w-12 rounded-2xl bg-indigo-50 flex items-center justify-center mb-4">
             <ClipboardList className="text-indigo-600" />
           </div>
+
           <p className="text-sm font-bold text-slate-500">Total</p>
+
           <h3 className="text-3xl font-extrabold text-slate-900 mt-2">
             {totalTasks}
           </h3>
@@ -150,7 +158,9 @@ const Tasks = () => {
           <div className="h-12 w-12 rounded-2xl bg-slate-100 flex items-center justify-center mb-4">
             <ClipboardList className="text-slate-600" />
           </div>
+
           <p className="text-sm font-bold text-slate-500">Todo</p>
+
           <h3 className="text-3xl font-extrabold text-slate-900 mt-2">
             {todoTasks}
           </h3>
@@ -160,7 +170,9 @@ const Tasks = () => {
           <div className="h-12 w-12 rounded-2xl bg-yellow-50 flex items-center justify-center mb-4">
             <Clock3 className="text-yellow-600" />
           </div>
+
           <p className="text-sm font-bold text-slate-500">In Progress</p>
+
           <h3 className="text-3xl font-extrabold text-slate-900 mt-2">
             {inProgressTasks}
           </h3>
@@ -170,7 +182,9 @@ const Tasks = () => {
           <div className="h-12 w-12 rounded-2xl bg-green-50 flex items-center justify-center mb-4">
             <CheckCircle2 className="text-green-600" />
           </div>
+
           <p className="text-sm font-bold text-slate-500">Completed</p>
+
           <h3 className="text-3xl font-extrabold text-slate-900 mt-2">
             {completedTasks}
           </h3>
@@ -180,7 +194,9 @@ const Tasks = () => {
           <div className="h-12 w-12 rounded-2xl bg-red-50 flex items-center justify-center mb-4">
             <AlertCircle className="text-red-600" />
           </div>
+
           <p className="text-sm font-bold text-slate-500">Overdue</p>
+
           <h3 className="text-3xl font-extrabold text-slate-900 mt-2">
             {overdueTasks}
           </h3>

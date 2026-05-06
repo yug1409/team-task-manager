@@ -98,7 +98,11 @@ const TaskCard = ({ task, onStatusUpdated, onEdit, onDelete }) => {
                   : "bg-indigo-50 text-indigo-600 shadow-indigo-100"
               }`}
             >
-              {isOverdue ? <AlertCircle size={26} /> : <CheckCircle2 size={26} />}
+              {isOverdue ? (
+                <AlertCircle size={26} />
+              ) : (
+                <CheckCircle2 size={26} />
+              )}
             </div>
 
             <div className="min-w-0">
@@ -129,10 +133,10 @@ const TaskCard = ({ task, onStatusUpdated, onEdit, onDelete }) => {
               {task?.priority}
             </span>
 
-            {user?.role === "admin" && (
+            {user?.role === "admin" && onEdit && onDelete && (
               <>
                 <button
-                  onClick={() => onEdit && onEdit(task)}
+                  onClick={() => onEdit(task)}
                   className="h-9 w-9 flex items-center justify-center rounded-2xl bg-slate-50 hover:bg-indigo-50 text-slate-500 hover:text-indigo-600 transition"
                   title="Edit Task"
                 >
@@ -140,7 +144,7 @@ const TaskCard = ({ task, onStatusUpdated, onEdit, onDelete }) => {
                 </button>
 
                 <button
-                  onClick={() => onDelete && onDelete(task._id)}
+                  onClick={() => onDelete(task._id)}
                   className="h-9 w-9 flex items-center justify-center rounded-2xl bg-slate-50 hover:bg-red-50 text-slate-500 hover:text-red-600 transition"
                   title="Delete Task"
                 >
@@ -205,7 +209,11 @@ const TaskCard = ({ task, onStatusUpdated, onEdit, onDelete }) => {
                 isOverdue ? "text-red-600" : "text-slate-500"
               }`}
             >
-              {isOverdue ? <AlertCircle size={15} /> : <CalendarDays size={15} />}
+              {isOverdue ? (
+                <AlertCircle size={15} />
+              ) : (
+                <CalendarDays size={15} />
+              )}
               Due Date
             </div>
 
