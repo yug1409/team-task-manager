@@ -218,7 +218,7 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <div className="mt-6 rounded-3xl bg-slate-750 text-white p-5">
+          <div className="mt-6 rounded-3xl bg-slate-800 text-white p-5">
             <CalendarDays className="text-indigo-300" size={32} />
 
             <h3 className="text-lg font-bold mt-4">Today’s Focus</h3>
