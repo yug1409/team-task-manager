@@ -179,9 +179,9 @@ const Layout = ({ children }) => {
         </div>
       </aside>
 
-      <main className="flex-1 min-h-screen min-w-0 overflow-x-hidden">
-  <header className="bg-white/90 backdrop-blur-xl border-b border-slate-200 px-6 lg:px-8 py-4 flex items-center justify-between gap-4 sticky top-0 z-20">
-      <div className="flex items-center gap-4 min-w-0">
+      <main className="flex-1 min-h-screen min-w-0">
+        <header className="bg-white/80 backdrop-blur-xl border-b border-slate-200 px-5 lg:px-8 py-4 flex items-center justify-between gap-4 sticky top-0 z-20">
+          <div className="flex items-center gap-4 min-w-0">
             <button
               onClick={() => setOpen(true)}
               className="lg:hidden bg-slate-100 hover:bg-slate-200 p-2.5 rounded-xl transition shrink-0"
@@ -205,8 +205,8 @@ const Layout = ({ children }) => {
           </span>
         </header>
 
-        <section className="p-6 lg:p-8 overflow-x-hidden">{children}</section>
-          </main>
+        <section className="p-5 lg:p-8">{children}</section>
+      </main>
     </div>
   );
 };
