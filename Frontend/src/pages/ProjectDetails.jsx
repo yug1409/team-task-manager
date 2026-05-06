@@ -13,7 +13,7 @@ import Loader from "../components/Loader";
 import TaskCard from "../components/TaskCard";
 import toast from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
-
+import useLockBodyScroll from "../hooks/useLockBodyScroll";
 const ProjectDetails = () => {
   const { id } = useParams();
   const { user } = useAuth();
@@ -133,7 +133,7 @@ const ProjectDetails = () => {
       dueDate: "",
     });
   };
-
+useLockBodyScroll(showMemberModal || showTaskModal);
   const handleSubmitTask = async (e) => {
     e.preventDefault();
 
@@ -307,8 +307,14 @@ const ProjectDetails = () => {
       </div>
 
       {showMemberModal && (
-        <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center px-4">
-          <div className="bg-white rounded-3xl shadow-xl w-full max-w-md p-6">
+        <div
+  onClick={() => setShowMemberModal(false)}
+  className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-4 overflow-y-auto"
+>
+<div
+  onClick={(e) => e.stopPropagation()}
+  className="bg-white rounded-3xl shadow-xl w-full max-w-md p-6 max-h-[90vh] overflow-y-auto"
+>
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-bold text-slate-900">
                 Add Member
@@ -363,8 +369,14 @@ const ProjectDetails = () => {
       )}
 
       {showTaskModal && (
-        <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center px-4">
-          <div className="bg-white rounded-3xl shadow-xl w-full max-w-xl p-6 max-h-[90vh] overflow-y-auto">
+        <div
+  onClick={closeTaskModal}
+  className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-4 overflow-y-auto"
+>
+          <div
+  onClick={(e) => e.stopPropagation()}
+  className="bg-white rounded-3xl shadow-xl w-full max-w-xl p-6 max-h-[90vh] overflow-y-auto"
+>
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-bold text-slate-900">
                 {editingTask ? "Edit Task" : "Create Task"}
