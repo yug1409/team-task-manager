@@ -3,4 +3,17 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
+
+  preview: {
+    host: "0.0.0.0",
+    allowedHosts: [
+      "frontend-production-7dc8f.up.railway.app"
+    ],
+  },
+
+  server: {
+    allowedHosts: [
+      "frontend-production-7dc8f.up.railway.app"
+    ],
+  },
 });
