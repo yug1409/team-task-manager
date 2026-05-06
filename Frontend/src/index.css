@@ -4,9 +4,93 @@
 
 * {
   font-family: Inter, system-ui, Arial, sans-serif;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
+  min-height: 100vh;
   background: #f8fafc;
+  color: #0f172a;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+input,
+textarea,
+select {
+  transition: all 0.2s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
+}
+
+/* Reusable UI classes */
+.page-title {
+  @apply text-3xl font-extrabold text-slate-900 tracking-tight;
+}
+
+.page-subtitle {
+  @apply text-slate-500 mt-2;
+}
+
+.card {
+  @apply bg-white border border-slate-100 rounded-3xl shadow-sm;
+}
+
+.card-hover {
+  @apply hover:shadow-xl hover:-translate-y-1 transition-all duration-300;
+}
+
+.primary-btn {
+  @apply inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-3 rounded-2xl font-semibold transition-all shadow-lg shadow-indigo-200;
+}
+
+.dark-btn {
+  @apply inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white px-5 py-3 rounded-2xl font-semibold transition-all;
+}
+
+.danger-btn {
+  @apply inline-flex items-center justify-center gap-2 bg-red-500 hover:bg-red-600 text-white px-5 py-3 rounded-2xl font-semibold transition-all;
+}
+
+.input-field {
+  @apply mt-2 w-full px-4 py-3 rounded-2xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500;
+}
+
+.select-field {
+  @apply mt-2 w-full px-4 py-3 pr-10 rounded-2xl border border-slate-200 bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500;
+}
+
+.modal-overlay {
+  @apply fixed inset-0 bg-slate-950/50 backdrop-blur-sm z-50 flex items-center justify-center px-4 overflow-y-auto;
+}
+
+.modal-box {
+  @apply bg-white rounded-[2rem] shadow-2xl w-full p-6 max-h-[90vh] overflow-y-auto;
+}
+
+.badge {
+  @apply px-3 py-1 rounded-full text-xs font-bold capitalize;
 }
