@@ -84,7 +84,7 @@ select:focus {
 }
 
 .modal-overlay {
-  @apply fixed inset-0 bg-slate-950/50 backdrop-blur-sm z-50 flex items-center justify-center px-4 overflow-y-auto;
+  @apply fixed inset-0 bg-slate-950/50 z-50 flex items-center justify-center px-4 overflow-y-auto;
 }
 
 .modal-box {

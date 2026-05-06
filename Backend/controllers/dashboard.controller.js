@@ -20,48 +20,55 @@ const getDashboardStats = async (req, res) => {
 
     const todoTasks = await Task.countDocuments({
       ...taskFilter,
-      status: "todo"
+      status: "todo",
     });
 
     const inProgressTasks = await Task.countDocuments({
       ...taskFilter,
-      status: "in-progress"
+      status: "in-progress",
     });
 
     const completedTasks = await Task.countDocuments({
       ...taskFilter,
-      status: "completed"
+      status: "completed",
     });
 
     const overdueTasks = await Task.countDocuments({
       ...taskFilter,
       dueDate: { $lt: new Date() },
-      status: { $ne: "completed" }
+      status: { $ne: "completed" },
     });
 
     const recentTasks = await Task.find(taskFilter)
       .populate("project", "name")
       .populate("assignedTo", "name email")
+      .populate("createdBy", "name email")
       .sort({ createdAt: -1 })
       .limit(5);
 
     res.status(200).json({
-      totalProjects,
-      totalTasks,
-      todoTasks,
-      inProgressTasks,
-      completedTasks,
-      overdueTasks,
-      recentTasks
+      success: true,
+
+      stats: {
+        totalProjects,
+        totalTasks,
+        todoTasks,
+        inProgressTasks,
+        completedTasks,
+        overdueTasks,
+      },
+
+      recentTasks,
     });
   } catch (error) {
     res.status(500).json({
+      success: false,
       message: "Failed to fetch dashboard stats",
-      error: error.message
+      error: error.message,
     });
   }
 };
 
 module.exports = {
-  getDashboardStats
+  getDashboardStats,
 };
