@@ -69,7 +69,7 @@ const Dashboard = () => {
 
             <p className="text-indigo-100 mt-3 max-w-2xl">
               Track your projects, assigned tasks, completed work, and overdue
-              activities from one clean dashboard.
+              activities.
             </p>
           </div>
 
@@ -218,7 +218,7 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <div className="mt-6 rounded-3xl bg-slate-950 text-white p-5">
+          <div className="mt-6 rounded-3xl bg-slate-200 text-white p-5">
             <CalendarDays className="text-indigo-300" size={32} />
 
             <h3 className="text-lg font-bold mt-4">Today’s Focus</h3>
