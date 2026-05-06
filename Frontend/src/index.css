@@ -14,7 +14,6 @@
 
 html {
   scroll-behavior: smooth;
-   overflow-x: hidden;
 }
 
 body {
@@ -22,7 +21,6 @@ body {
   min-height: 100vh;
   background: #f8fafc;
   color: #0f172a;
-    overflow-x: hidden;
 }
 
 button,
@@ -86,11 +84,11 @@ select:focus {
 }
 
 .modal-overlay {
-  @apply fixed inset-0 bg-black/40 z-[9999] flex items-center justify-center px-4 py-6 overflow-y-auto;
+  @apply fixed inset-0 bg-slate-950/50 backdrop-blur-sm z-50 flex items-center justify-center px-4 overflow-y-auto;
 }
 
 .modal-box {
-  @apply bg-white rounded-[2rem] shadow-2xl w-full max-h-[90vh] overflow-y-auto;
+  @apply bg-white rounded-[2rem] shadow-2xl w-full p-6 max-h-[90vh] overflow-y-auto;
 }
 
 .badge {
